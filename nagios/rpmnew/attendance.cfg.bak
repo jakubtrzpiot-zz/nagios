@@ -1,0 +1,94 @@
+###############################################################################
+###############################################################################
+#
+# HOST DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+# Define the switch that we'll be monitoring
+
+define host{
+	use		generic-attendance
+	host_name	RCP_Adm_WE
+	alias		RCP Administracja WE
+	address		172.16.195.12
+	hostgroups	TimeAndAttendance
+	}
+define host{
+	use		generic-attendance
+	host_name	RCP_Adm_WY
+	alias		RCP Administracja WY
+	address		172.16.195.13
+	hostgroups	TimeAndAttendance
+	}
+define host{
+	use		generic-attendance
+	host_name	RCP_Prod_WE
+	alias		RCP Produkcja WE
+	address		172.16.195.14
+	hostgroups	TimeAndAttendance
+	}
+define host{
+	use		generic-attendance
+	host_name	RCP_Prod_WY
+	alias		RCP Produkcja WY
+	address		172.16.195.15
+	hostgroups	TimeAndAttendance
+	}
+###############################################################################
+###############################################################################
+#
+# HOST GROUP DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+# Create a new hostgroup for switches
+
+define hostgroup{
+	hostgroup_name	TimeAndAttendance		; The name of the hostgroup
+	alias		Time and Attendance
+	}
+###############################################################################
+###############################################################################
+#
+# SERVICE DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+# Create a service to PING to switch
+
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		RCP_Adm_WE
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		RCP_Adm_WY
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		RCP_Prod_WE
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		RCP_Prod_WY
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}

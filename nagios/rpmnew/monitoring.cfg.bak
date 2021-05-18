@@ -1,0 +1,210 @@
+###############################################################################
+###############################################################################
+#
+# HOST DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+# Define the switch that we'll be monitoring
+
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	IPCam_Pallets			; The name we're giving to this switch
+	alias		Camera IP Pallets
+	address		172.16.193.1		; IP address of the switch
+	hostgroups	IPCAM			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	IPCam_Baler
+	alias		Camera IP Baler
+	address		172.16.193.2		; IP address of the switch
+	hostgroups	IPCAM			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	IPCam_Tape		; The name we're giving to this switch
+	alias		Camera IP Tape
+	address		172.16.193.3		; IP address of the switch
+	hostgroups	IPCAM			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	IPCam_PARA		; The name we're giving to this switch
+	alias		Camera IP PARA
+	address		172.16.193.4		; IP address of the switch
+	hostgroups	IPCAM			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_1		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.10		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_2		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.11		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_3		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.12		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_4		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.13		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_5		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.14		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_6		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.15		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+define host{
+	use		generic-camera		; Inherit default values from a template
+	host_name	NVR_7		; The name we're giving to this switch
+	alias		NVR
+	address		172.16.193.16		; IP address of the switch
+	hostgroups	NVR			; Host groups this switch is associated with
+	}
+###############################################################################
+###############################################################################
+#
+# HOST GROUP DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+# Create a new hostgroup for switches
+
+define hostgroup{
+	hostgroup_name	IPCAM		; The name of the hostgroup
+	alias		Camera IP
+	}
+
+define hostgroup{
+	hostgroup_name	NVR		; The name of the hostgroup
+	alias		Network Video Recorder
+	}
+
+
+
+###############################################################################
+###############################################################################
+#
+# SERVICE DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+# Create a service to PING to switch
+
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		IPCam_Pallets	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		IPCam_Baler	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		IPCam_Tape	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		IPCam_PARA	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_1	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_2	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_3	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_4	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_5	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_6	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
+define service{
+	use			generic-service	; Inherit values from a template
+	host_name		NVR_7	; The name of the host the service is associated with
+	service_description	PING		; The service description
+	check_command		check_ping!200.0,20%!600.0,60%	; The command used to monitor the service
+	check_interval	5		; Check the service every 5 minutes under normal conditions
+	retry_interval	1		; Re-check the service every minute until its final/hard state is determined
+	}
