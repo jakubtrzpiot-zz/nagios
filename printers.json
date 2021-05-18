@@ -1,0 +1,18 @@
+{
+  "TYC-Quality-1": {
+    "ip": "172.16.205.37",
+    "services": [""]
+  },
+  "TYC-Quality-2": {
+    "ip": "172.16.205.37",
+    "services": [""]
+  },
+  "TYC-Quality-3": {
+    "ip": "172.16.205.37",
+    "services": [""]
+  },
+  "TYC-Quality-4": {
+    "ip": "172.16.205.37",
+    "services": [""]
+  }
+}
